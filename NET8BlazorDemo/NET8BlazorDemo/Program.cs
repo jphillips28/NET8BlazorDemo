@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using NET8BlazorDemo.Client.Pages;
 using NET8BlazorDemo.Components;
+using NET8BlazorDemo.Data;
 
 namespace NET8BlazorDemo
 {
@@ -13,6 +15,9 @@ namespace NET8BlazorDemo
 			builder.Services.AddRazorComponents()
 				.AddInteractiveServerComponents()
 				.AddInteractiveWebAssemblyComponents();
+
+			builder.Services.AddDbContext<NET8BlazorDemoContext>(options =>
+				options.UseSqlServer(builder.Configuration.GetConnectionString("NET8BlazorDemoDb")));
 
 			var app = builder.Build();
 
