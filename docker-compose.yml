@@ -21,7 +21,7 @@ services:
       - net8blazordemonetwork
   net8blazordemo:
     container_name: net8-blazor-demo-app
-    image: ${DOCKER_REGISTRY-}net8blazordemo
+    image: ${DOCKER_REGISTRY-}net8blazordemoapp
     build:
       context: .
       dockerfile: NET8BlazorDemo/NET8BlazorDemo/Dockerfile
