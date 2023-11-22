@@ -3,6 +3,10 @@ version: '3.4'
 networks:
   net8blazordemonetwork:
 
+volumes:
+  mssql-server-2022:
+    external: true
+
 services:
   net8blazordemodb:
     container_name: net8-blazor-demo-db
@@ -10,9 +14,7 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - ./appdata/mssql-server-2022/data:/var/opt/mssql/data
-      - ./appdata/mssql-server-2022/log:/var/opt/mssql/log
-      - ./appdata/mssql-server-2022/secrets:/var/opt/mssql/secrets
+      - mssql-server-2022:/var/opt/mssql
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=Password12345!
