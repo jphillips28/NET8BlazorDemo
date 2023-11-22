@@ -1,0 +1,43 @@
+﻿@page "/movies"
+@inject IMovieService MovieService
+@attribute [StreamRendering]
+
+<PageTitle>Movies</PageTitle>
+
+<h1>Movie List</h1>
+
+<p>This component demonstrates utilizing a dependency injected database context service.</p>
+
+@if (movies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in movies)
+            {
+                <tr>
+                    <td>@movie.Id</td>
+                    <td>@movie.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IList<Movie>? movies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        movies = await MovieService.GetAllMovies();
+    }
+}
