@@ -15,6 +15,9 @@ namespace NET8BlazorDemo.Services
 
 		public async Task<IList<Movie>> GetAllMovies()
 		{
+			// Simulating a long running transaction
+			await Task.Delay(2000);
+
 			return await _dbContext.Movies.ToListAsync();
 		}
 	}
