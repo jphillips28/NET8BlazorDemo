@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NET8BlazorDemo.Client.Pages;
 using NET8BlazorDemo.Components;
 using NET8BlazorDemo.Data;
+using NET8BlazorDemo.Services;
 
 namespace NET8BlazorDemo
 {
@@ -27,8 +28,9 @@ namespace NET8BlazorDemo
                 //options.UseSqlServer(builder.Configuration.GetConnectionString("NET8BlazorDemoDb")));
                 options.UseSqlServer(connectionString));
 
+            builder.Services.AddScoped<IMovieService, MovieService>();
 
-			var app = builder.Build();
+            var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
