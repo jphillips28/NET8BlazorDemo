@@ -10,9 +10,9 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - ./data:/var/opt/mssql/data
-      - ./log:/var/opt/mssql/log
-      - ./secrets:/var/opt/mssql/secrets
+      - ./app/data/mssql-server-2022/data:/var/opt/mssql/data
+      - ./app/data/mssql-server-2022/log:/var/opt/mssql/log
+      - ./app/data/mssql-server-2022/secrets:/var/opt/mssql/secrets
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=Password12345!
