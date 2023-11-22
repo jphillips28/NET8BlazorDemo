@@ -16,8 +16,17 @@ namespace NET8BlazorDemo
 				.AddInteractiveServerComponents()
 				.AddInteractiveWebAssemblyComponents();
 
+			// DI from docker-compose
+			var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+			var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+			var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+			var connectionString = $"Server={dbHost};Database={dbName};User Id=sa;Password={dbPassword};TrustServerCertificate=True;";
 			builder.Services.AddDbContext<NET8BlazorDemoContext>(options =>
-				options.UseSqlServer(builder.Configuration.GetConnectionString("NET8BlazorDemoDb")));
+                // TODO: Dockerize 'dotnet ef database update'
+				// Uncomment for local dotnet ef db migrations
+                //options.UseSqlServer(builder.Configuration.GetConnectionString("NET8BlazorDemoDb")));
+                options.UseSqlServer(connectionString));
+
 
 			var app = builder.Build();
 
