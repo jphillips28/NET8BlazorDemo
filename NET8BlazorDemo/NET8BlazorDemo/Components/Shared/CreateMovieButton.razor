@@ -1,0 +1,12 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<button class="btn btn-primary" @onclick="CreateMovie">Create Movie</button>
+
+@code {
+
+    protected void CreateMovie()
+    {
+        NavigationManager.NavigateTo("/edit-movie");
+    }
+}

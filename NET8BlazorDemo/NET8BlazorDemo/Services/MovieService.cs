@@ -13,7 +13,15 @@ namespace NET8BlazorDemo.Services
 			_dbContext = dbContext;
 		}
 
-		public async Task<IList<Movie>> GetAllMovies()
+        public async Task<Movie> CreateMovie(Movie movie)
+        {
+            _dbContext.Movies.Add(movie);
+			await _dbContext.SaveChangesAsync();
+
+			return movie;
+        }
+
+        public async Task<IList<Movie>> GetAllMovies()
 		{
 			// Simulating a long running transaction
 			await Task.Delay(2000);

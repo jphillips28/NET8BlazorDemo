@@ -1,0 +1,26 @@
+﻿@page "/edit-movie"
+@page "/edit-movie/{id:int}"
+@inject IMovieService MovieService
+
+<PageTitle>Movie Editor</PageTitle>
+
+<h1>Create Movie</h1>
+
+<EditForm Model="movie" OnSubmit="HandleSubmit" FormName="editMovie">
+    <label>Name</label>
+    <InputText @bind-Value="movie.Name">@movie.Name</InputText>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    Movie movie { get; set; } = new Movie { Name = string.Empty };
+
+    protected async Task HandleSubmit()
+    {
+        await MovieService.CreateMovie(movie);
+    }
+}
