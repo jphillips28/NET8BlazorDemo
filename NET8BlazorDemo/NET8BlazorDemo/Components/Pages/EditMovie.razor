@@ -13,11 +13,11 @@
 </EditForm>
 
 @code {
+    [SupplyParameterFromForm]
+    private Movie movie { get; set; } = new Movie { Name = string.Empty };
+
     [Parameter]
     public int Id { get; set; }
-
-    [SupplyParameterFromForm]
-    Movie movie { get; set; } = new Movie { Name = string.Empty };
 
     protected async Task HandleSubmit()
     {
