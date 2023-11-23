@@ -1,4 +1,5 @@
 ﻿@inject IMovieService MovieService
+@inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
@@ -10,7 +11,13 @@
 
     protected async Task DeleteMovie()
     {
-        await MovieService.DeleteMovieAsync(Id);
-        NavigationManager.NavigateTo("/movies");
+        bool confirmed = await JSRuntime.InvokeAsync<bool>(
+            "confirm", 
+            "Are you sure that you want to delete this movie from your list?");
+        if (confirmed)
+        {
+            await MovieService.DeleteMovieAsync(Id);
+            NavigationManager.NavigateTo("/movies");
+        }
     }
 }
