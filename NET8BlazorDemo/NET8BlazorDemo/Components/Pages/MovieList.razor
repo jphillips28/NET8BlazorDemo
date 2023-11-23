@@ -35,7 +35,7 @@ else
                         <UpdateMovieButton Id="@movie.Id" IsDisabled="@isDeleting" />
                         <button 
                             class="btn btn-danger m-1"
-                            @onclick="() => DeleteMovie(movie.Id)"
+                            @onclick="() => DeleteMovie(movie)"
                             disabled="@isDeleting"
                         >Delete</button>
                     </td>
@@ -55,15 +55,15 @@ else
         movies = await MovieService.GetAllMoviesAsync();
     }
 
-    protected async Task DeleteMovie(int id)
+    protected async Task DeleteMovie(Movie movie)
     {
         isDeleting = true;
         bool confirmed = await JSRuntime.InvokeAsync<bool>(
             "confirm",
-            "Are you sure that you want to delete this movie from your list?");
+            $"Are you sure that you want to delete '{movie.Name}' from your list?");
         if (confirmed)
         {
-            await MovieService.DeleteMovieAsync(id);
+            await MovieService.DeleteMovieAsync(movie.Id);
             movies = await MovieService.GetAllMoviesAsync();
         }
         isDeleting = false;
