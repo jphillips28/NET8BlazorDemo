@@ -1,9 +1,12 @@
 ﻿@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
-<button class="btn btn-outline-success" @onclick="CreateMovie">Create</button>
+<button class="btn btn-outline-success" @onclick="CreateMovie" disabled="@IsDisabled">Create</button>
 
 @code {
+    [Parameter]
+    public bool IsDisabled { get; set; }
+
     protected void CreateMovie()
     {
         NavigationManager.NavigateTo("/edit-movie");

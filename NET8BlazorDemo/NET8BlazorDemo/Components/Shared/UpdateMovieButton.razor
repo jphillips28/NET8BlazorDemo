@@ -1,11 +1,14 @@
 ﻿@inject NavigationManager NavigationManager
 @rendermode InteractiveAuto
 
-<button class="btn btn-outline-primary m-1" @onclick="UpdateMovie">Update</button>
+<button class="btn btn-outline-primary m-1" @onclick="UpdateMovie" disabled="@IsDisabled">Update</button>
 
 @code {
     [Parameter]
     public int Id { get; set; }
+
+    [Parameter]
+    public bool IsDisabled { get; set; }
 
     protected void UpdateMovie()
     {

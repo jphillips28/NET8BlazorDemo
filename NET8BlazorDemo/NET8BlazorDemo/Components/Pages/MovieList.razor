@@ -1,6 +1,9 @@
 ﻿@page "/movies"
 @inject IMovieService MovieService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
 @attribute [StreamRendering]
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
 
 <PageTitle>Movies</PageTitle>
 
@@ -29,21 +32,40 @@ else
                     <td>@movie.Id</td>
                     <td>@movie.Name</td>
                     <td>
-                        <UpdateMovieButton Id="@movie.Id" />
-                        <DeleteMovieButton Id="@movie.Id" />
+                        <UpdateMovieButton Id="@movie.Id" IsDisabled="@isDeleting" />
+                        <button 
+                            class="btn btn-danger m-1"
+                            @onclick="() => DeleteMovie(movie.Id)"
+                            disabled="@isDeleting"
+                        >Delete</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    <CreateMovieButton />
+    <CreateMovieButton IsDisabled="@isDeleting" />
 }
 
 @code {
+    private bool isDeleting;
     private IList<Movie>? movies;
 
     protected override async Task OnInitializedAsync()
     {
         movies = await MovieService.GetAllMoviesAsync();
+    }
+
+    protected async Task DeleteMovie(int id)
+    {
+        isDeleting = true;
+        bool confirmed = await JSRuntime.InvokeAsync<bool>(
+            "confirm",
+            "Are you sure that you want to delete this movie from your list?");
+        if (confirmed)
+        {
+            await MovieService.DeleteMovieAsync(id);
+            movies = await MovieService.GetAllMoviesAsync();
+        }
+        isDeleting = false;
     }
 }
