@@ -1,10 +1,20 @@
 ﻿@page "/edit-movie"
 @page "/edit-movie/{id:int}"
 @inject IMovieService MovieService
+@inject NavigationManager NavigationManager
+@attribute [StreamRendering]
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
 
 <PageTitle>Movie Editor</PageTitle>
 
-<h1>Create Movie</h1>
+@if (Id == null)
+{
+    <h1>Create Movie</h1>
+}
+else
+{
+    <h1>Edit @movie.Name</h1>
+}
 
 <EditForm Model="movie" OnSubmit="HandleSubmit" FormName="editMovie">
     <label>Name</label>
@@ -12,15 +22,32 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 
-@code {
+    @code {
     [SupplyParameterFromForm]
     private Movie movie { get; set; } = new Movie { Name = string.Empty };
 
     [Parameter]
-    public int Id { get; set; }
+    public int? Id { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null)
+        {
+            movie = await MovieService.GetMovieByIdAsync((int)Id);
+        }
+    }
 
     protected async Task HandleSubmit()
     {
-        await MovieService.CreateMovie(movie);
+        if (movie.Id == default)
+        {
+            await MovieService.CreateMovieAsync(movie);
+        }
+        else
+        {
+            await MovieService.UpdateMovieAsync(movie);
+        }
+
+        NavigationManager.NavigateTo("/movies");
     }
 }

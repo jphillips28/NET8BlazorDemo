@@ -4,7 +4,10 @@ namespace NET8BlazorDemo.Services
 {
 	public interface IMovieService
 	{
-		Task<IList<Movie>> GetAllMovies();
-		Task<Movie> CreateMovie(Movie movie);
+		Task<Movie> GetMovieByIdAsync(int id);
+		Task<IList<Movie>> GetAllMoviesAsync();
+		Task<Movie> CreateMovieAsync(Movie movie);
+		Task<Movie> UpdateMovieAsync(Movie movie);
+		Task<bool> DeleteMovieAsync(int id);
 	}
 }

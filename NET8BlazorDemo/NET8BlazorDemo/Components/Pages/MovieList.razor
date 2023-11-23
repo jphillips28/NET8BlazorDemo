@@ -19,6 +19,7 @@ else
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,10 @@ else
                 <tr>
                     <td>@movie.Id</td>
                     <td>@movie.Name</td>
+                    <td>
+                        <UpdateMovieButton Id="@movie.Id" />
+                        <DeleteMovieButton Id="@movie.Id" />
+                    </td>
                 </tr>
             }
         </tbody>
@@ -40,6 +45,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        movies = await MovieService.GetAllMovies();
+        movies = await MovieService.GetAllMoviesAsync();
     }
 }
