@@ -18,12 +18,13 @@ else
 
 <EditForm Model="movie" OnSubmit="HandleSubmit" FormName="editMovie">
     <label>Name</label>
-    <InputText @bind-Value="movie.Name" disabled="@isLoading">@movie.Name</InputText>
+    <input type="text" @ref="txtName" @bind-value="movie.Name" disabled="@isLoading" />
     <button type="submit" class="btn btn-primary" disabled="@isLoading">Submit</button>
 </EditForm>
 
 @code {
     private bool isLoading;
+    private ElementReference txtName;
 
     [SupplyParameterFromForm]
     private Movie movie { get; set; } = new Movie { Name = string.Empty };
@@ -39,6 +40,11 @@ else
             movie = await MovieService.GetMovieByIdAsync((int)Id);
         }
         isLoading = false;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool _)
+    {
+        await txtName.FocusAsync();
     }
 
     protected async Task HandleSubmit()
