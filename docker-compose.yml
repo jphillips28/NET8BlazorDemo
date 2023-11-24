@@ -28,8 +28,8 @@ services:
       context: .
       dockerfile: NET8BlazorDemo/NET8BlazorDemo/Dockerfile
     ports:
-      - 5000:8080
-      - 5001:8081
+      - 5000:80
+      - 5001:443
     depends_on:
       - net8blazordemodb
     environment:
