@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using NET8BlazorDemo.Client.Pages;
 using NET8BlazorDemo.Components;
-using NET8BlazorDemo.Data;
-using NET8BlazorDemo.Services;
+using NET8BlazorDemo.Data.DbContexts;
+using NET8BlazorDemo.Data.Services;
 
 namespace NET8BlazorDemo
 {

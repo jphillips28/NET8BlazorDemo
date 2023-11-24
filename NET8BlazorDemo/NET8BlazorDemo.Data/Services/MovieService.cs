@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NET8BlazorDemo.Data;
-using NET8BlazorDemo.Entities;
+using NET8BlazorDemo.Data.DbContexts;
+using NET8BlazorDemo.Data.Entities;
 
-namespace NET8BlazorDemo.Services
+namespace NET8BlazorDemo.Data.Services
 {
 	public class MovieService : IMovieService
 	{

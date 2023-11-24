@@ -1,6 +1,6 @@
-﻿using NET8BlazorDemo.Entities;
+﻿using NET8BlazorDemo.Data.Entities;
 
-namespace NET8BlazorDemo.Services
+namespace NET8BlazorDemo.Data.Services
 {
 	public interface IMovieService
 	{

@@ -2,20 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NET8BlazorDemo.Data;
+using NET8BlazorDemo.Data.DbContexts;
 
 #nullable disable
 
-namespace NET8BlazorDemo.Migrations
+namespace NET8BlazorDemo.Data.Migrations
 {
     [DbContext(typeof(NET8BlazorDemoContext))]
-    [Migration("20231119005709_Initial")]
-    partial class Initial
+    partial class NET8BlazorDemoContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +21,7 @@ namespace NET8BlazorDemo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("NET8BlazorDemo.Entities.Movie", b =>
+            modelBuilder.Entity("NET8BlazorDemo.Data.Entities.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
