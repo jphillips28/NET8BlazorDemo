@@ -28,6 +28,14 @@ namespace NET8BlazorDemo
 			if (app.Environment.IsDevelopment())
 			{
 				app.UseWebAssemblyDebugging();
+				using (var scope = app.Services.CreateScope())
+				{
+					var dbContext = scope.ServiceProvider.GetRequiredService<NET8BlazorDemoContext>();
+					if (dbContext.Database.GetPendingMigrations().Any())
+					{
+						dbContext.Database.Migrate();
+					}
+				}
 			}
 			else
 			{
