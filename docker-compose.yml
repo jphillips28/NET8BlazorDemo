@@ -32,9 +32,5 @@ services:
       - 5001:443
     depends_on:
       - net8blazordemodb
-    environment:
-      - DB_HOST=net8blazordemodb
-      - DB_NAME=NET8BlazorDemo
-      - DB_SA_PASSWORD=Password12345!
     networks:
       - net8blazordemonetwork
