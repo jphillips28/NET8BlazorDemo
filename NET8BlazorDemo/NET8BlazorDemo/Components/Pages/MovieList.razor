@@ -32,7 +32,7 @@ else
                     <td>@movie.Id</td>
                     <td>@movie.Name</td>
                     <td>
-                        <UpdateMovieButton Id="@movie.Id" IsDisabled="@isDeleting" />
+                        <ButtonUpdateMovie Id="@movie.Id" IsDisabled="@isDeleting" />
                         <button 
                             class="btn btn-danger m-1"
                             @onclick="() => DeleteMovie(movie)"
@@ -43,7 +43,7 @@ else
             }
         </tbody>
     </table>
-    <CreateMovieButton IsDisabled="@isDeleting" />
+    <ButtonCreateMovie IsDisabled="@isDeleting" />
 }
 
 @code {
