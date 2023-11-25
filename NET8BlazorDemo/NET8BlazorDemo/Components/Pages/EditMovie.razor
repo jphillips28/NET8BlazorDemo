@@ -42,9 +42,12 @@ else
         isLoading = false;
     }
 
-    protected override async Task OnAfterRenderAsync(bool _)
+    protected override async Task OnAfterRenderAsync(bool isFirstRender)
     {
-        await txtName.FocusAsync();
+        if (isFirstRender || movie.Id != default)
+        {
+            await txtName.FocusAsync();
+        }
     }
 
     protected async Task HandleSubmit()
