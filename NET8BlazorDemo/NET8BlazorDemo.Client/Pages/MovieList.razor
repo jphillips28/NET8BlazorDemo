@@ -3,7 +3,7 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 @attribute [StreamRendering]
-@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+@rendermode @(new InteractiveAutoRenderMode(prerender: false))
 
 <PageTitle>Movies</PageTitle>
 
