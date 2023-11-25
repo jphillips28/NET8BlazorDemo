@@ -1,4 +1,4 @@
-﻿using NET8BlazorDemo.Shared.Entities;
+﻿using NET8BlazorDemo.Shared.Models;
 using NET8BlazorDemo.Shared.Services;
 using System.Net.Http.Json;
 

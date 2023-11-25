@@ -1,4 +1,4 @@
-﻿namespace NET8BlazorDemo.Shared.Entities
+﻿namespace NET8BlazorDemo.DbContexts.Entities
 {
 	public class Movie
 	{

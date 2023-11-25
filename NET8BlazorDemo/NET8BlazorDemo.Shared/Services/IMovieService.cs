@@ -1,4 +1,4 @@
-﻿using NET8BlazorDemo.Shared.Entities;
+﻿using NET8BlazorDemo.Shared.Models;
 
 namespace NET8BlazorDemo.Shared.Services
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NET8BlazorDemo.Shared.Entities;
+using NET8BlazorDemo.Shared.Models;
 using NET8BlazorDemo.Shared.Services;
 
 namespace NET8BlazorDemo.Controllers

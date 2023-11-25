@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NET8BlazorDemo.DbContexts;
-using NET8BlazorDemo.Shared.Entities;
+using NET8BlazorDemo.Shared.Models;
 using NET8BlazorDemo.Shared.Services;
 
 namespace NET8BlazorDemo.Services
@@ -19,10 +19,19 @@ namespace NET8BlazorDemo.Services
             // Simulating a long running transaction
             await Task.Delay(2000);
 
-            _dbContext.Movies.Add(movie);
+            var dbMovie = new DbContexts.Entities.Movie
+            {
+                Name = movie.Name,
+            };
+
+            _dbContext.Movies.Add(dbMovie);
 			await _dbContext.SaveChangesAsync();
 
-			return movie;
+			return new Movie 
+            {
+                Id = dbMovie.Id,
+                Name = dbMovie.Name,
+            };
         }
 
         public async Task<bool> DeleteMovieAsync(int id)
@@ -30,7 +39,8 @@ namespace NET8BlazorDemo.Services
             // Simulating a long running transaction
             await Task.Delay(2000);
 
-            var dbMovie = await _dbContext.Movies.Where(m => m.Id == id)
+            var dbMovie = await _dbContext.Movies
+                .Where(m => m.Id == id)
                 .SingleOrDefaultAsync()
                 ?? throw new KeyNotFoundException($"A movie with id:{id} was not found.");
 
@@ -45,7 +55,13 @@ namespace NET8BlazorDemo.Services
 			// Simulating a long running transaction
 			await Task.Delay(2000);
 
-			return await _dbContext.Movies.ToListAsync();
+			return await _dbContext.Movies
+                .Select(m => new Movie 
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                })
+                .ToListAsync();
 		}
 
         public async Task<Movie> GetMovieByIdAsync(int id)
@@ -53,7 +69,13 @@ namespace NET8BlazorDemo.Services
             // Simulating a long running transaction
             await Task.Delay(2000);
 
-            return await _dbContext.Movies.Where(m =>  m.Id == id)
+            return await _dbContext.Movies
+                .Where(m =>  m.Id == id)
+                .Select(m => new Movie 
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                })
                 .SingleOrDefaultAsync() 
                 ?? throw new KeyNotFoundException($"A movie with id:{id} was not found.");
         }
@@ -63,14 +85,19 @@ namespace NET8BlazorDemo.Services
             // Simulating a long running transaction
             await Task.Delay(2000);
 
-            var dbMovie = await _dbContext.Movies.Where(m => m.Id == movie.Id)
+            var dbMovie = await _dbContext.Movies
+                .Where(m => m.Id == movie.Id)
                 .SingleOrDefaultAsync()
                 ?? throw new KeyNotFoundException($"A movie with id:{movie.Id} was not found.");
 
             dbMovie.Name = movie.Name;
             await _dbContext.SaveChangesAsync();
 
-            return dbMovie;
+            return new Movie 
+            { 
+                Id = movie.Id,
+                Name = movie.Name,
+            };
         }
     }
 }
