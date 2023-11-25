@@ -1,4 +1,4 @@
-# myNET8BlazorDemo
+# My .NET 8 Blazor Web App Test Drive
 Taking the new .NET 8 release for a test drive with a Blazor Web App.
 
 ## Prerequisites
