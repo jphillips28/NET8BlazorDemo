@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NET8BlazorDemo.Data\NET8BlazorDemo.Data.csproj" />
+    <ProjectReference Include="..\NET8BlazorDemo.Shared\NET8BlazorDemo.Shared.csproj" />
   </ItemGroup>
 
 </Project>

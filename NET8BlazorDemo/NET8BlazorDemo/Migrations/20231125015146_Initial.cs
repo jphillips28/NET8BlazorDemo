@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace NET8BlazorDemo.Data.Migrations
+namespace NET8BlazorDemo.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

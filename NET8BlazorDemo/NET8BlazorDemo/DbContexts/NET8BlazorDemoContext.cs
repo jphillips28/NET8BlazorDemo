@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NET8BlazorDemo.Data.Entities;
+using NET8BlazorDemo.Shared.Entities;
 
-namespace NET8BlazorDemo.Data.DbContexts
+namespace NET8BlazorDemo.DbContexts
 {
 	public class NET8BlazorDemoContext : DbContext
 	{

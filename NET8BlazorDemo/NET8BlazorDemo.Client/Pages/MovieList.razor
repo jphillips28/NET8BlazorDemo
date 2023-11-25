@@ -1,9 +1,9 @@
 ﻿@page "/movies"
-@inject IMovieService MovieService
 @inject IJSRuntime JSRuntime
+@inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 @attribute [StreamRendering]
-@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <PageTitle>Movies</PageTitle>
 

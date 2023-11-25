@@ -3,7 +3,7 @@
 @inject IMovieService MovieService
 @inject NavigationManager NavigationManager
 @attribute [StreamRendering]
-@rendermode @(new InteractiveAutoRenderMode(prerender: false))
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
 
 <PageTitle>Movie Editor</PageTitle>
 

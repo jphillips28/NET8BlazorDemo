@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using NET8BlazorDemo.Client.Pages;
 using NET8BlazorDemo.Components;
-using NET8BlazorDemo.Data.DbContexts;
-using NET8BlazorDemo.Data.Services;
+using NET8BlazorDemo.DbContexts;
+using NET8BlazorDemo.Services;
+using NET8BlazorDemo.Shared.Services;
 
 namespace NET8BlazorDemo
 {
@@ -22,6 +23,7 @@ namespace NET8BlazorDemo
 
             builder.Services.AddScoped<IMovieService, MovieService>();
 
+			builder.Services.AddControllers();
             var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
@@ -53,6 +55,8 @@ namespace NET8BlazorDemo
 				.AddInteractiveServerRenderMode()
 				.AddInteractiveWebAssemblyRenderMode()
 				.AddAdditionalAssemblies(typeof(Counter).Assembly);
+
+			app.MapControllers();
 
 			app.Run();
 		}

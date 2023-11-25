@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET8BlazorDemo.Client", "NE
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F562870E-DFA9-4E85-A4DB-6AE0C299CA61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET8BlazorDemo.Data", "NET8BlazorDemo\NET8BlazorDemo.Data\NET8BlazorDemo.Data.csproj", "{C2E2A34D-AC2B-4DE5-B878-8AC3CD203CFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET8BlazorDemo.Shared", "NET8BlazorDemo\NET8BlazorDemo.Shared\NET8BlazorDemo.Shared.csproj", "{D670449A-721D-4318-8387-1DBD9F35C827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{F562870E-DFA9-4E85-A4DB-6AE0C299CA61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F562870E-DFA9-4E85-A4DB-6AE0C299CA61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F562870E-DFA9-4E85-A4DB-6AE0C299CA61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2E2A34D-AC2B-4DE5-B878-8AC3CD203CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2E2A34D-AC2B-4DE5-B878-8AC3CD203CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2E2A34D-AC2B-4DE5-B878-8AC3CD203CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2E2A34D-AC2B-4DE5-B878-8AC3CD203CFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D670449A-721D-4318-8387-1DBD9F35C827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D670449A-721D-4318-8387-1DBD9F35C827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D670449A-721D-4318-8387-1DBD9F35C827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D670449A-721D-4318-8387-1DBD9F35C827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
