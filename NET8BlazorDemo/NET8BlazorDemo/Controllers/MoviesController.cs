@@ -67,7 +67,7 @@ namespace NET8BlazorDemo.Controllers
 			}
 		}
 
-		[HttpDelete]
+		[HttpDelete("{id}")]
 		public async Task<ActionResult<bool>> DeleteMovieAsync(int id)
 		{
 			try
