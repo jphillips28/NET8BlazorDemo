@@ -14,4 +14,5 @@ Taking the new .NET 8 release for a test drive with a Blazor Web App.
 
 ## Testing Notes
 1. I'm simulating a long running database transaction in each of the CRUD operations for the `IMovieService`
+  - This helps demonstrate the snappy `StreamRendering` and *follow-up* data load
 ![alt text](https://github.com/jphillips28/NET8BlazorDemo/blob/master/README_image_01.png?raw=true)
