@@ -1,7 +1,7 @@
-#My .NET 8 Blazor Web App Test Drive
+# My .NET 8 Blazor Web App Test Drive
 Taking the new .NET 8 release for a test drive with a Blazor Web App.
 
-##Prerequisites
+## Prerequisites
 - Visual Studio Community 2022 v17.8.1
   - ***You should set the `Startup Project` as the `docker-compose` project***
 - WSL v2.0.9.0
@@ -12,7 +12,7 @@ Taking the new .NET 8 release for a test drive with a Blazor Web App.
 - Azure Data Studio v1.47.0 (*optional*)
 - PowerShell 7.4.0 (*optional*)
 
-##Testing Notes
+## Testing Notes
 1. I'm simulating a long running database transaction in each of the CRUD operations for the `IMovieService`
   - This helps demonstrate the snappy `StreamRendering` and *follow-up* data load
 ![alt text](https://github.com/jphillips28/NET8BlazorDemo/blob/master/README_image_01.png?raw=true)
