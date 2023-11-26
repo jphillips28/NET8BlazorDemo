@@ -13,5 +13,5 @@ Taking the new .NET 8 release for a test drive with a Blazor Web App.
 - PowerShell 7.4.0 (*optional*)
 
 ## Testing Notes
-- I'm simulating a long running SQL Server 2022 transaction in each of the CRUD operations within the Server's implementation of the `IMovieService`
+1. I'm simulating a long running database transaction in each of the CRUD operations for the `IMovieService`
 ![alt text](https://github.com/jphillips28/NET8BlazorDemo/blob/master/README_image_01.png?raw=true)
