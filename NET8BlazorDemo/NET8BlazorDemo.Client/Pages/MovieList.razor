@@ -35,7 +35,7 @@ else
                         <ButtonUpdateMovie Id="@movie.Id" IsDisabled="@isDeleting" />
                         <button 
                             class="btn btn-danger m-1"
-                            @onclick="() => DeleteMovie(movie)"
+                            @onclick="() => modalDeleteMovie?.Open(movie)"
                             disabled="@isDeleting"
                         >Delete</button>
                     </td>
@@ -46,26 +46,27 @@ else
     <ButtonCreateMovie IsDisabled="@isDeleting" />
 }
 
+<ModalDeleteMovie 
+    @ref="modalDeleteMovie"
+    OnConfirmation="() => DeleteMovie()"
+    IsDisabled="@isDeleting" />
+
 @code {
     private bool isDeleting;
     private IList<Movie>? movies;
+    private ModalDeleteMovie? modalDeleteMovie;
 
     protected override async Task OnInitializedAsync()
     {
         movies = await MovieService.GetAllMoviesAsync();
     }
 
-    protected async Task DeleteMovie(Movie movie)
+    protected async Task DeleteMovie()
     {
         isDeleting = true;
-        bool confirmed = await JSRuntime.InvokeAsync<bool>(
-            "confirm",
-            $"Are you sure that you want to delete '{movie.Name}' from your list?");
-        if (confirmed)
-        {
-            await MovieService.DeleteMovieAsync(movie.Id);
-            movies = await MovieService.GetAllMoviesAsync();
-        }
+        await MovieService.DeleteMovieAsync((int)modalDeleteMovie?.MovieToDelete?.Id);
+        movies = await MovieService.GetAllMoviesAsync();
+        modalDeleteMovie.Close();
         isDeleting = false;
     }
 }

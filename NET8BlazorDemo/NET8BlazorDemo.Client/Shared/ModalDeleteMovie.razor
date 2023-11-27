@@ -1,0 +1,62 @@
+﻿<div 
+    class="modal fade @modalClass" 
+    id="staticBackdrop"
+    data-bs-backdrop="static" 
+    data-bs-keyboard="false" 
+    tabindex="-1" 
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+    style="display:@modalDisplay;"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Movie Confirmation</h1>
+            </div>
+            <div class="modal-body">
+                <p>
+                    @($"Are you sure you want to delete '{MovieToDelete?.Name}' from your list?")
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @onclick="OnConfirmation" disabled="@IsDisabled">OK</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @onclick="Close" disabled="@IsDisabled">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (showBackdrop)
+{
+    <div class="modal-backdrop fade show" />
+}
+
+@code {
+    private string modalClass = string.Empty;
+    private string modalDisplay = "none;";
+    private bool showBackdrop;
+
+    [Parameter]
+    public bool IsDisabled { get; set; }
+
+    [Parameter]
+    public EventCallback OnConfirmation { get; set; }
+
+    public Movie? MovieToDelete { get; set; }
+
+    public void Open(Movie movie)
+    {
+        MovieToDelete = movie;
+        modalClass = "show";
+        modalDisplay = "block;";
+        showBackdrop = true;
+    }
+
+    public void Close()
+    {
+        MovieToDelete = null;
+        modalClass = string.Empty;
+        modalDisplay = "none;";
+        showBackdrop = false;
+    }
+}
