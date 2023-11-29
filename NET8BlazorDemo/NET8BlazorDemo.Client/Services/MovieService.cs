@@ -6,19 +6,17 @@ namespace NET8BlazorDemo.Client.Services
 {
 	public class MovieService : IMovieService
 	{
-		private readonly HttpClient _httpClient;
+		private readonly IHttpClientFactory _httpClientFactory;
 
-		public MovieService()
+		public MovieService(IHttpClientFactory httpClientFactory)
 		{
-			_httpClient = new HttpClient
-			{
-				BaseAddress = new Uri("https://localhost:5001")
-			};
+			_httpClientFactory = httpClientFactory;
 		}
 
 		public async Task<Movie> CreateMovieAsync(Movie movie)
 		{
-			var response = await _httpClient.PostAsJsonAsync("/api/movies", movie);
+			var httpClient = _httpClientFactory.CreateClient("NET8BlazorDemoWebApi");
+			var response = await httpClient.PostAsJsonAsync("/api/movies", movie);
 			if (response.IsSuccessStatusCode)
 			{
                 return await response.Content.ReadFromJsonAsync<Movie>();
@@ -29,7 +27,8 @@ namespace NET8BlazorDemo.Client.Services
 
 		public async Task<bool> DeleteMovieAsync(int id)
 		{
-			var response = await _httpClient.DeleteAsync($"/api/movies/{id}");
+            var httpClient = _httpClientFactory.CreateClient("NET8BlazorDemoWebApi");
+            var response = await httpClient.DeleteAsync($"/api/movies/{id}");
 			if (response.IsSuccessStatusCode)
 			{
                 return await response.Content.ReadFromJsonAsync<bool>();
@@ -40,7 +39,8 @@ namespace NET8BlazorDemo.Client.Services
 
         public async Task<IList<Movie>> GetAllMoviesAsync()
 		{
-			var response = await _httpClient.GetAsync("/api/movies");
+            var httpClient = _httpClientFactory.CreateClient("NET8BlazorDemoWebApi");
+            var response = await httpClient.GetAsync("/api/movies");
 			if (response.IsSuccessStatusCode)
 			{
                 return await response.Content.ReadFromJsonAsync<IList<Movie>>();
@@ -51,7 +51,8 @@ namespace NET8BlazorDemo.Client.Services
 
         public async Task<Movie> GetMovieByIdAsync(int id)
 		{
-			var response = await _httpClient.GetAsync($"/api/movies/{id}");
+            var httpClient = _httpClientFactory.CreateClient("NET8BlazorDemoWebApi");
+            var response = await httpClient.GetAsync($"/api/movies/{id}");
 			if (response.IsSuccessStatusCode)
 			{
                 return await response.Content.ReadFromJsonAsync<Movie>();
@@ -62,7 +63,8 @@ namespace NET8BlazorDemo.Client.Services
 
         public async Task<Movie> UpdateMovieAsync(Movie movie)
 		{
-			var response = await _httpClient.PutAsJsonAsync("/api/movies", movie);
+            var httpClient = _httpClientFactory.CreateClient("NET8BlazorDemoWebApi");
+            var response = await httpClient.PutAsJsonAsync("/api/movies", movie);
 			if (response.IsSuccessStatusCode)
 			{
                 return await response.Content.ReadFromJsonAsync<Movie>();
